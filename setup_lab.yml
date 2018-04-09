@@ -1,7 +1,5 @@
-#
-#About: This will install Nginx
-#
 ---
+
 - hosts: 'lab.docker-host'
   gather_facts: no
   become: yes
@@ -9,5 +7,5 @@
     - lab.env
   vars:
     domain: 'example.com'           # domain name
-    subdomain: 'shop-{{num}}'       # subdomain where {{num}} is a number with leading 0, starting from 01
+    subdomain: 'shop-{{num}}'       # subdomain where {{num}} is a number with leading 0, starting from 01 (subdomain.domain)
     number_of_instances: 30         # Number of instances
