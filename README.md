@@ -1,1 +1,1 @@
-# multilab_owasp-juice-shop
+# OWASP Juice Shop lab setup

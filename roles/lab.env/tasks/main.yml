@@ -1,0 +1,10 @@
+---
+
+- import_tasks: install_packages.yml
+  static: yes
+- import_tasks: configure_firewall.yml
+  static: yes
+- import_tasks: configure_nginx.yml
+  static: yes
+- import_tasks: configure_docker.yml
+  static: yes

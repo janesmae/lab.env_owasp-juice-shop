@@ -1,0 +1,10 @@
+---
+
+- name: Run docker containers
+  docker_container:
+    name: shop_{{item}}
+    image: bkimminich/juice-shop
+    state: started
+    ports:
+      - "80{{item}}:3000"
+  with_sequence: start=1 end={{number_of_instances}} format=%02d

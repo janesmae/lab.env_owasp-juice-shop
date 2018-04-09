@@ -1,0 +1,11 @@
+---
+
+- name: Allow http traffic
+  ufw:
+    rule: allow
+    port: 80
+
+- name: Allos https traffic
+  ufw:
+    rule: allow
+    port: 443

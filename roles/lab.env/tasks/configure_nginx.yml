@@ -1,0 +1,41 @@
+---
+
+- name: Configure Nginx
+  template:
+    src: 'nginx.j2'
+    dest: '/etc/nginx/nginx.conf'
+  notify: Restart-Nginx
+
+- name: Configure Nginx vhosts
+  template:
+    src: 'hosts.j2'
+    dest: '/etc/nginx/sites-available/shop_{{item}}'
+  vars:
+    num: '{{item}}'
+  with_sequence: start=1 end={{number_of_instances}} format=%02d
+  notify: Restart-Nginx
+
+- name: Link Nginx vhosts
+  file:
+    src: /etc/nginx/sites-available/{{item}}
+    dest: /etc/nginx/sites-enabled/{{item}}
+    state: link
+  with_sequence: start=1 end={{number_of_instances}} format=shop_%02d
+  notify: Restart-Nginx
+
+- name: Configure Nginx SSL vhosts
+  template:
+    src: 'hosts_ssl.j2'
+    dest: '/etc/nginx/sites-available/shop_{{item}}_ssl'
+  vars:
+    num: '{{item}}'
+  with_sequence: start=1 end={{number_of_instances}} format=%02d
+  notify: Restart-Nginx
+
+- name: Link Nginx SSL vhosts_
+  file:
+    src: /etc/nginx/sites-available/{{item}}
+    dest: /etc/nginx/sites-enabled/{{item}}
+    state: link
+  with_sequence: start=1 end={{number_of_instances}} format=shop_%02d_ssl
+  notify: Restart-Nginx
