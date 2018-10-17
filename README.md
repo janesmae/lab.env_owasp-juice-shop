@@ -11,7 +11,7 @@ ansible-playbook setup_lab.yml
 For letsencrypt wildcard ssl certificate use the following command:
 
 ```sh
-certbot certonly -d <domain> -d *.<domain>  --server https://acme-v02.api.letsencrypt.org/directory --manual --preferred-challenges dns-0
+certbot certonly -d <domain> -d *.<domain>  --server https://acme-v02.api.letsencrypt.org/directory --manual --preferred-challenges dns
 ```
 
 ## Links
